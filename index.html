@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Focus Flow</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <h1>Focus Flow</h1>
+      <div class="streak" id="streak-badge">
+        <span class="flame">🔥</span>
+        <span id="streak-count">0</span>
+        <span class="streak-label">day streak</span>
+      </div>
+    </header>
+
+    <section class="goal-bar">
+      <div class="goal-info">
+        <span class="goal-label">Daily Goal</span>
+        <span class="goal-progress-text" id="goal-progress-text">0 / 4 🍅</span>
+      </div>
+      <div class="goal-track">
+        <div class="goal-fill" id="goal-fill"></div>
+      </div>
+      <div class="goal-controls">
+        <button class="goal-adjust" id="goal-dec" title="Decrease daily goal">−</button>
+        <button class="goal-adjust" id="goal-inc" title="Increase daily goal">+</button>
+      </div>
+    </section>
+
+    <main class="layout">
+      <section class="timer-card">
+        <div class="mode-tabs">
+          <button class="mode-tab active" data-mode="work">Focus</button>
+          <button class="mode-tab" data-mode="short">Short Break</button>
+          <button class="mode-tab" data-mode="long">Long Break</button>
+        </div>
+
+        <div class="ring-wrap">
+          <svg class="ring" viewBox="0 0 220 220">
+            <circle class="ring-bg" cx="110" cy="110" r="100" />
+            <circle class="ring-progress" id="ring-progress" cx="110" cy="110" r="100" />
+          </svg>
+          <div class="ring-center">
+            <div class="time" id="time-display">25:00</div>
+            <div class="current-task" id="current-task-display">No task selected</div>
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="btn secondary" id="reset-btn" title="Reset">↺</button>
+          <button class="btn primary" id="start-btn">Start</button>
+          <button class="btn secondary" id="skip-btn" title="Skip">⏭</button>
+        </div>
+
+        <div class="session-dots" id="session-dots"></div>
+      </section>
+
+      <section class="tasks-card">
+        <div class="tasks-header">
+          <h2>Tasks</h2>
+          <span class="pomo-count" id="pomo-today">0 pomodoros today</span>
+        </div>
+
+        <form id="task-form" class="task-form">
+          <input type="text" id="task-input" placeholder="What are you working on?" autocomplete="off" />
+          <button type="submit" class="btn primary small">Add</button>
+        </form>
+
+        <ul class="task-list" id="task-list"></ul>
+        <p class="empty-state" id="empty-state">No tasks yet — add one to start focusing.</p>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>Data is saved locally in your browser.</span>
+      <button class="link-btn" id="clear-data-btn">Reset all data</button>
+    </footer>
+  </div>
+
+  <div class="celebrate-overlay" id="celebrate-overlay">
+    <div class="celebrate-card">
+      <div class="celebrate-emoji">🎉</div>
+      <div class="celebrate-title" id="celebrate-title">Pomodoro complete!</div>
+      <div class="celebrate-sub" id="celebrate-sub">Take a short break.</div>
+      <button class="btn primary" id="celebrate-continue">Continue</button>
+    </div>
+  </div>
+
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="app.js"></script>
+</body>
+</html>
